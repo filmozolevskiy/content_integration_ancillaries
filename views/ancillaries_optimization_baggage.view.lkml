@@ -241,6 +241,16 @@ view: ancillaries_optimization_baggage {
     group_label: "Volume"
   }
 
+  measure: offers_per_request {
+    type: average
+    sql: ${item_count} ;;
+    sql_distinct_key: ${id} ;;
+    value_format: "#,##0.00"
+    label: "Offers per Request"
+    description: "Avg item_count per optimizer call (request). Calls with zero item_count count as 0 — so this drops below the bag-types-offered ceiling whenever an attempt returned no offer. sql_distinct_key prevents inflation when joined to the options view."
+    group_label: "Coverage"
+  }
+
   measure: avg_execution_ms {
     type: average
     sql: ${execution_milliseconds} ;;
